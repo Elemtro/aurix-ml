@@ -23,6 +23,19 @@ WHISPER_CACHE = os.getenv("WHISPER_CACHE", "/models")
 WHISPER_LANGUAGE = os.getenv("WHISPER_LANGUAGE", "pl")
 INTERNAL_TOKEN = os.getenv("INTERNAL_TOKEN", "")
 
+DIGIT_WORDS = {
+    "0": "zero",
+    "1": "jeden",
+    "2": "dwa",
+    "3": "trzy",
+    "4": "cztery",
+    "5": "pięć",
+    "6": "sześć",
+    "7": "siedem",
+    "8": "osiem",
+    "9": "dziewięć",
+}
+
 app = FastAPI(title="Aurix ML", version="0.1.0")
 
 _model: WhisperModel | None = None
@@ -46,8 +59,26 @@ def get_model() -> WhisperModel:
 def normalize(text: str) -> str:
     text = text.lower()
     text = re.sub(r"[^\w\s]", " ", text, flags=re.UNICODE)
+    tokens = [DIGIT_WORDS.get(token, token) for token in text.split()]
 
-    return " ".join(text.split())
+    return " ".join(tokens)
+
+
+def phrase_match(expected: str, transcript: str) -> float:
+    """Fraction of expected words found in the transcript (fuzzy per word)."""
+    expected_words = normalize(expected).split()
+    heard_words = normalize(transcript).split()
+
+    if not expected_words:
+        return 0.0
+
+    matched = sum(
+        1
+        for word in expected_words
+        if any(fuzz.ratio(word, heard) >= 80 for heard in heard_words)
+    )
+
+    return matched / len(expected_words)
 
 
 def to_wav(source: Path, target: Path) -> None:
@@ -111,21 +142,18 @@ async def verify(
         segments, info = get_model().transcribe(str(trimmed), language=WHISPER_LANGUAGE or None, vad_filter=True)
         transcript = " ".join(segment.text for segment in segments)
 
-    phrase_match = fuzz.token_sort_ratio(
-        normalize(transcript),
-        normalize(expected_phrase),
-    ) / 100
+    phrase_match_score = phrase_match(expected_phrase, transcript)
 
     # Placeholders until ECAPA-TDNN and AASIST are wired in.
     speaker_score = 0.92
     pad_score = 0.99
-    accepted = speaker_score >= 0.80 and pad_score >= 0.90 and phrase_match >= 0.80
+    accepted = speaker_score >= 0.80 and pad_score >= 0.90 and phrase_match_score >= 0.80
 
     return {
         "accepted": accepted,
         "speaker_score": speaker_score,
         "pad_score": pad_score,
-        "phrase_match": phrase_match,
+        "phrase_match": phrase_match_score,
         "transcript": transcript.strip(),
         "duration": round(info.duration, 2),
     }
