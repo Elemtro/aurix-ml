@@ -1,0 +1,22 @@
+services:
+  ml:
+    build: .
+    container_name: aurix-ml
+    ports:
+      - "127.0.0.1:8010:8000"
+    environment:
+      WHISPER_MODEL: small
+      WHISPER_LANGUAGE: pl
+      WHISPER_CACHE: /models
+      INTERNAL_TOKEN: dev-token
+    volumes:
+      - whisper_models:/models
+      - ./app:/app/app
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  whisper_models:
