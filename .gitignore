@@ -1,7 +1,11 @@
 
 __pycache__/
 *.pyc
-.venv/
+.venv*/
+models/
+.pip-cache/
+build/
+testdata/real_audio_tests/
 
 # IDE
 .idea/

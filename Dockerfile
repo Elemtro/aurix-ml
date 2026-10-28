@@ -10,7 +10,10 @@ RUN apt-get update \
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --index-url https://download.pytorch.org/whl/cpu \
+        --extra-index-url https://pypi.org/simple \
+        "torch>=2.2,<2.12" "torchaudio>=2.2,<2.12" \
+    && pip install -r requirements.txt
 
 COPY app ./app
 

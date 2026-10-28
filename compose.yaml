@@ -7,10 +7,14 @@ services:
     environment:
       WHISPER_MODEL: small
       WHISPER_LANGUAGE: pl
-      WHISPER_CACHE: /models
+      WHISPER_CACHE: /models/whisper
+      MODEL_CACHE: /models
+      TORCH_HOME: /models/torch
       INTERNAL_TOKEN: dev-token
+      PAD_THRESHOLD: "0.90"
+      PAD_ENFORCED: "${PAD_ENFORCED:-false}"
     volumes:
-      - whisper_models:/models
+      - ml_models:/models
       - ./app:/app/app
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
@@ -19,4 +23,4 @@ services:
       retries: 10
 
 volumes:
-  whisper_models:
+  ml_models:

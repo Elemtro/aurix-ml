@@ -2,6 +2,13 @@ fastapi>=0.115
 uvicorn[standard]>=0.30
 python-multipart>=0.0.9
 faster-whisper>=1.0
-# PyAV 14+ dropped the metadata_errors argument used by faster-whisper 1.x
-av<14
+# faster-whisper 1.2.1 still passes metadata_errors, removed by PyAV 19.
+av>=11,<19
 rapidfuzz>=3.0
+numpy>=1.26,<3
+torch>=2.2,<2.12
+torchaudio>=2.2,<2.12
+silero-vad>=6.2.3
+speechbrain>=1.0.3
+onnxruntime>=1.20
+huggingface_hub>=0.27
