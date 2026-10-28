@@ -1,0 +1,295 @@
+{
+  "health_before": {
+    "status": "ok",
+    "model": "small",
+    "loaded": true,
+    "whisper_model": "small",
+    "whisper_loaded": true,
+    "pad_enforced": false,
+    "models": {
+      "device": "cpu",
+      "vad_loaded": true,
+      "ecapa_loaded": true,
+      "aasist_loaded": true
+    }
+  },
+  "aurix_main_contract": {
+    "passed": true,
+    "http_status": 200,
+    "response": {
+      "accepted": false,
+      "reasons": [
+        "speaker reference required"
+      ],
+      "warnings": [
+        "PAD is diagnostic only; calibrate it before enforcing spoof decisions."
+      ],
+      "speaker_score": 0.0,
+      "speaker_cosine": null,
+      "speaker_threshold": 0.8,
+      "pad_score": 0.00302,
+      "pad_threshold": 0.9,
+      "pad_enforced": false,
+      "pad_decision": "report_only",
+      "phrase_match": 1.0,
+      "phrase_threshold": 0.8,
+      "transcript": "chmura rover księżka wiatr.",
+      "duration": 2.54,
+      "quality": {
+        "probe": {
+          "speech_duration": 2.536,
+          "speech_coverage": 0.42,
+          "speech_dbfs": -21.45,
+          "noise_dbfs": -62.75,
+          "estimated_snr_db": 41.3,
+          "clipped_fraction": 0.0
+        },
+        "reference": null
+      },
+      "models": {
+        "device": "cpu",
+        "vad_loaded": true,
+        "ecapa_loaded": true,
+        "aasist_loaded": true
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "p1",
+      "expected_phrase": "chmura rower książka wiatr",
+      "expected": {
+        "speaker_match": true,
+        "phrase_match": true,
+        "accepted": true
+      },
+      "actual": {
+        "speaker_match": true,
+        "phrase_match": true,
+        "accepted": true
+      },
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "accepted": true,
+        "reasons": [],
+        "warnings": [
+          "PAD is diagnostic only; calibrate it before enforcing spoof decisions."
+        ],
+        "speaker_score": 0.90768,
+        "speaker_cosine": 0.81536,
+        "speaker_threshold": 0.8,
+        "pad_score": 0.00302,
+        "pad_threshold": 0.9,
+        "pad_enforced": false,
+        "pad_decision": "report_only",
+        "phrase_match": 1.0,
+        "phrase_threshold": 0.8,
+        "transcript": "chmura rover księżka wiatr.",
+        "duration": 2.54,
+        "quality": {
+          "probe": {
+            "speech_duration": 2.536,
+            "speech_coverage": 0.42,
+            "speech_dbfs": -21.45,
+            "noise_dbfs": -62.75,
+            "estimated_snr_db": 41.3,
+            "clipped_fraction": 0.0
+          },
+          "reference": {
+            "speech_duration": 2.952,
+            "speech_coverage": 0.524,
+            "speech_dbfs": -24.31,
+            "noise_dbfs": -69.05,
+            "estimated_snr_db": 44.74,
+            "clipped_fraction": 0.0
+          }
+        },
+        "models": {
+          "device": "cpu",
+          "vad_loaded": true,
+          "ecapa_loaded": true,
+          "aasist_loaded": true
+        }
+      }
+    },
+    {
+      "id": "p2",
+      "expected_phrase": "fortuna często rozumowi przeczy",
+      "expected": {
+        "speaker_match": true,
+        "phrase_match": false,
+        "accepted": false
+      },
+      "actual": {
+        "speaker_match": true,
+        "phrase_match": false,
+        "accepted": false
+      },
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "accepted": false,
+        "reasons": [
+          "phrase mismatch"
+        ],
+        "warnings": [
+          "PAD is diagnostic only; calibrate it before enforcing spoof decisions."
+        ],
+        "speaker_score": 0.82723,
+        "speaker_cosine": 0.65447,
+        "speaker_threshold": 0.8,
+        "pad_score": 0.00148,
+        "pad_threshold": 0.9,
+        "pad_enforced": false,
+        "pad_decision": "report_only",
+        "phrase_match": 0.0,
+        "phrase_threshold": 0.8,
+        "transcript": "Dobre przy lepszym, tanieje.",
+        "duration": 2.76,
+        "quality": {
+          "probe": {
+            "speech_duration": 2.76,
+            "speech_coverage": 0.555,
+            "speech_dbfs": -24.56,
+            "noise_dbfs": -60.81,
+            "estimated_snr_db": 36.26,
+            "clipped_fraction": 0.0
+          },
+          "reference": {
+            "speech_duration": 3.112,
+            "speech_coverage": 0.651,
+            "speech_dbfs": -24.45,
+            "noise_dbfs": -64.36,
+            "estimated_snr_db": 39.91,
+            "clipped_fraction": 0.0
+          }
+        },
+        "models": {
+          "device": "cpu",
+          "vad_loaded": true,
+          "ecapa_loaded": true,
+          "aasist_loaded": true
+        }
+      }
+    },
+    {
+      "id": "p3",
+      "expected_phrase": "gdzie drwa rąbią, tam wióry lecą",
+      "expected": {
+        "speaker_match": true,
+        "phrase_match": true,
+        "accepted": true
+      },
+      "actual": {
+        "speaker_match": true,
+        "phrase_match": true,
+        "accepted": true
+      },
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "accepted": true,
+        "reasons": [],
+        "warnings": [
+          "PAD is diagnostic only; calibrate it before enforcing spoof decisions."
+        ],
+        "speaker_score": 0.90454,
+        "speaker_cosine": 0.80909,
+        "speaker_threshold": 0.8,
+        "pad_score": 0.4593,
+        "pad_threshold": 0.9,
+        "pad_enforced": false,
+        "pad_decision": "report_only",
+        "phrase_match": 1.0,
+        "phrase_threshold": 0.8,
+        "transcript": "gdzie drwa rąbią, tam wióry lecą.",
+        "duration": 3.66,
+        "quality": {
+          "probe": {
+            "speech_duration": 3.504,
+            "speech_coverage": 0.629,
+            "speech_dbfs": -22.73,
+            "noise_dbfs": -63.81,
+            "estimated_snr_db": 41.07,
+            "clipped_fraction": 0.0
+          },
+          "reference": {
+            "speech_duration": 3.184,
+            "speech_coverage": 0.572,
+            "speech_dbfs": -22.48,
+            "noise_dbfs": -63.22,
+            "estimated_snr_db": 40.74,
+            "clipped_fraction": 0.0
+          }
+        },
+        "models": {
+          "device": "cpu",
+          "vad_loaded": true,
+          "ecapa_loaded": true,
+          "aasist_loaded": true
+        }
+      }
+    },
+    {
+      "id": "p4",
+      "expected_phrase": "w nocy wszystkie koty są szare",
+      "expected": {
+        "speaker_match": false,
+        "phrase_match": true,
+        "accepted": false
+      },
+      "actual": {
+        "speaker_match": false,
+        "phrase_match": true,
+        "accepted": false
+      },
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "accepted": false,
+        "reasons": [
+          "similarity below threshold"
+        ],
+        "warnings": [
+          "PAD is diagnostic only; calibrate it before enforcing spoof decisions."
+        ],
+        "speaker_score": 0.51033,
+        "speaker_cosine": 0.02066,
+        "speaker_threshold": 0.8,
+        "pad_score": 3e-05,
+        "pad_threshold": 0.9,
+        "pad_enforced": false,
+        "pad_decision": "report_only",
+        "phrase_match": 1.0,
+        "phrase_threshold": 0.8,
+        "transcript": "W nocy wszystkie koty są szale.",
+        "duration": 2.51,
+        "quality": {
+          "probe": {
+            "speech_duration": 2.511,
+            "speech_coverage": 0.669,
+            "speech_dbfs": -24.01,
+            "noise_dbfs": -64.64,
+            "estimated_snr_db": 40.63,
+            "clipped_fraction": 0.0
+          },
+          "reference": {
+            "speech_duration": 2.888,
+            "speech_coverage": 0.596,
+            "speech_dbfs": -24.92,
+            "noise_dbfs": -61.05,
+            "estimated_snr_db": 36.13,
+            "clipped_fraction": 0.0
+          }
+        },
+        "models": {
+          "device": "cpu",
+          "vad_loaded": true,
+          "ecapa_loaded": true,
+          "aasist_loaded": true
+        }
+      }
+    }
+  ]
+}
